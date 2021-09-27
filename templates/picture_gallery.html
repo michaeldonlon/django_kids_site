@@ -1,0 +1,34 @@
+<!-- templates/picture_gallery.html -->
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}{{ imagegallery.galleryname}}{% endblock title %}
+
+
+{% block content %}
+
+  <link rel="stylesheet" href="{% static 'css/gallerypage.css' %}">
+  
+  <div id="kidimage-header">
+    <h1>{{ imagegallery.galleryname }}</h1>
+  </div>
+
+  <div class="kidimage-grid">
+    {% for kidimage in imagegallery.kidimages.all %}
+      <div class="kidimage-container">
+        <img id="{{ imagegallery.galleryname }}_{{ forloop.counter }}" class="kidimage-image" src="{{ kidimage.thumbnail.url}}" onClick="modalclick(this.id, this.src)">
+      </div>
+    {% endfor %}
+  </div>
+  {% block javascript %}
+      <script src="{% static 'js/gallery_modal.js' %}"></script>
+      <script src="{% static 'js/gallery_heading.js' %}"></script>
+  {% endblock javascript %}
+
+  <!-- Modal image -->
+  <div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="img01">
+  </div>
+
+{% endblock content %}

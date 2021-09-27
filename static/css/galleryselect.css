@@ -1,0 +1,54 @@
+table, th, td {
+  border: 1px solid LightGray;
+  border-collapse: collapse;
+  padding: 10px;
+  text-align: center;
+  max-width: 800px;
+}
+
+th {
+  background-color: DeepSkyBlue;
+  color: white;
+  font-size: 24px;
+}
+
+td {
+  width: 33%;
+  color: DarkSlateGrey;
+  font-size: 20px;
+}
+
+tr {
+  height: 40px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:link {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.deactivated_text {
+  color: Gainsboro;
+  cursor: default;
+}
+
+.gallerytable {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (max-width: 1500px){
+  th, td {font-size:4vw;}
+}

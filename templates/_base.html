@@ -1,0 +1,23 @@
+<!-- templates/_base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <title>{% block title %}Djangokidssite{% endblock title %}</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      >
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}"/>
+</head>
+<body>
+  <div class="main-content-container">
+    {% block content %}
+    {% endblock content %}
+  </div>
+</body>
+
+
+
+</html>

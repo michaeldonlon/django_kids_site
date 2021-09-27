@@ -1,0 +1,45 @@
+<!-- templates/gallery_select.html -->
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Gallery Select{% endblock title %}
+
+
+{% block content %}
+
+  <link rel="stylesheet" href="{% static 'css/galleryselect.css' %}">
+
+  <h1>The Galleries</h1>
+  <table class="gallerytable" style="width:100%" id="datestable">
+    <tr>
+      <th onclick="move_year('down')" id="leftarrowcell"><a href="javascript:void(0);" id="leftarrow">&#10094;</a></th>
+      <th id="yearbox"></th>
+      <th onclick="move_year('up')" id="rightarrowcell"><a href="javascript:void(0);" id="rightarrow">&#10095;</th>
+    </tr>
+    <tr>
+      <td id="month_cell_1">Jan</td>
+      <td id="month_cell_2">Feb</td>
+      <td id="month_cell_3">Mar</td>
+    </tr>
+    <tr>
+      <td id="month_cell_4">Apr</td>
+      <td id="month_cell_5">May</td>
+      <td id="month_cell_6">Jun</td>
+    </tr>
+    <tr>
+      <td id="month_cell_7">Jul</td>
+      <td id="month_cell_8">Aug</td>
+      <td id="month_cell_9">Sep</td>
+    </tr>
+    <tr>
+      <td id="month_cell_10">Oct</td>
+      <td id="month_cell_11">Nov</td>
+      <td id="month_cell_12">Dec</td>
+    </tr>
+  </table> 
+
+  {% block javascript %}
+      <script src="{% static 'js/gallery_select.js' %}"></script>
+  {% endblock javascript %}
+
+{% endblock content %}
