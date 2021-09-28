@@ -30,7 +30,7 @@ class KidImage(models.Model):
     def upload_kid_image(instance, filename):
         return 'kidimages/{0}/{1}'.format(instance.gallery.galleryname, filename)
 
-    thekidimage = models.ImageField(upload_to=upload_kid_image, blank=True)
+    thekidimage = models.ImageField(upload_to=upload_kid_image, blank=True, unique=True)
     gallery = models.ForeignKey(ImageGallery, on_delete=models.CASCADE, related_name="kidimages")
 
     thumbnail = models.ImageField(upload_to='thumbs', editable=False, blank=True)
