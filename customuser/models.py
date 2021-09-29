@@ -41,31 +41,28 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def _user_has_perm(user, perm, obj):
-        for backend in auth.get_backends():
-            if not hasattr(backend, 'has_perm'):
-                continue
-            try:
-                if backend.has_perm(user, perm, obj):
-                    return True
-            except PermissionDenied:
-                return False
-        return False
 
-    def _user_has_module_perms(user, app_label):
-        """
-        A backend can raise `PermissionDenied` to short-circuit permission checking.
-        """
-        for backend in auth.get_backends():
-            if not hasattr(backend, 'has_module_perms'):
-                continue
-            try:
-                if backend.has_module_perms(user, app_label):
-                    return True
-            except PermissionDenied:
-                return False
-        return False
+def _user_has_perm(user, perm, obj):
+    for backend in auth.get_backends():
+        if not hasattr(backend, 'has_perm'):
+            continue
+        try:
+            if backend.has_perm(user, perm, obj):
+                return True
+        except PermissionDenied:
+            return False
+    return False
 
+def _user_has_module_perms(user, app_label):
+    for backend in auth.get_backends():
+        if not hasattr(backend, 'has_module_perms'):
+            continue
+        try:
+            if backend.has_module_perms(user, app_label):
+                return True
+        except PermissionDenied:
+            return False
+    return False
 
 
 class MyCustomUser(AbstractBaseUser):
@@ -117,7 +114,7 @@ class MyCustomUser(AbstractBaseUser):
     def has_perms(self, perm_list, obj=None):
         return all(self.has_perm(perm, obj) for perm in perm_list)
 
-    def has_module_perms(self, pages):
+    def has_module_perms(self, app_label):
         if self.is_active and self.is_admin:
             return True
         return _user_has_module_perms(self, app_label)
