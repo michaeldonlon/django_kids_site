@@ -191,7 +191,7 @@ if os.environ.get('ENVIRONMENT') == 'production':
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-Security for production
+# Security for production
 if os.environ.get('ENVIRONMENT') == 'production':
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
