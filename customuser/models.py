@@ -7,7 +7,10 @@ from django.contrib.auth.models import (
         AbstractBaseUser, 
         BaseUserManager, 
         Group
+        Permission
 )
+from django.core.exceptions import PermissionDenied
+from django.utils.translation import gettext_lazy as _
 
 
 
@@ -25,6 +28,8 @@ class MyUserManager(BaseUserManager):
             last_name=last_name,
         )
         user.set_password(password)
+        user.is_active = False
+        user.is_admin = False
         user.save(using=self._db)
         return user
 
@@ -86,7 +91,14 @@ class MyCustomUser(AbstractBaseUser):
     last_name = models.CharField(max_length=63, unique=False)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    user_permissions=[]
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name=_('user permissions'),
+        blank=True,
+        help_text=_('Specific permissions for this user.'),
+        related_name="user_set",
+        related_query_name="customuser",
+    )
     objects = MyUserManager()
     groups = models.ManyToManyField(
         Group,
@@ -123,6 +135,8 @@ class MyCustomUser(AbstractBaseUser):
     def is_staff(self):
         return self.is_admin
 
+    @property
+    def is_superuser(self):
+        return self.is_admin
 
-class MyGroups(Group):
-    pass
+
