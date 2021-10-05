@@ -67,18 +67,22 @@ class Command(BaseCommand):
                 t.save()
                 s3_client = boto3.client('s3')
                 response = s3_client.upload_file(img_path, settings.AWS_STORAGE_BUCKET_NAME, os.path.join('media',img_db_destination))
+                os.unlink(img_path)
             except IntegrityError as e:
                 with open('/home/centos/error_logs/image_error_log.txt', "a") as f:
                     f.write(e)
                     f.close()
+                shutil.move(img_path, '/home/centos/failed_uploads/'+image)
             except ClientError as e:
                 with open('/home/centos/error_logs/image_error_log.txt', "a") as f:
                     f.write(e)
                     f.close()
+                shutil.move(img_path, '/home/centos/failed_uploads/'+image)
             except:
                 with open('/home/centos/error_logs/image_error_log.txt', "a") as f:
                     f.write("failed to upload "+image+" to s3 bucket")
                     f.close()
+                shutil.move(img_path, '/home/centos/failed_uploads/'+image)
 
             self.stdout.write(self.style.SUCCESS('added image to media/kidimages/%s' % gallery))
 

@@ -1,24 +1,45 @@
 /* static/css/base.css */
 
-h1 {
-  color: DeepSkyBlue;
-  text-align: center;
+* {
+  font-family: "Arial Black", Helvetica, sans-serif;
 }
 
-a, p, label {
-  color: DarkSlateGrey;
+h1 {
+  color: #00BFFF;
   text-align: center;
-  align-self: center;
-  align-items: center;
-  align-content: center;
+  font-size: 10vmin;
+  margin: 0.3em;
+}
+
+p, label {
+  color: #2F4F4F;
+  text-align: center;
+  font-size: 4vmin;
+}
+
+a, a:visited {
+  color: #00BFFF;
+  text-decoration-line: none;
+}
+
+button, input[type="button"] {
+  color: #2F4F4F;
+  margin: 1em auto;
+  display: block;
+  border: 0.3em solid #00BFFF;
+  border-radius: 0.3em;
+  padding: 1em;
+  font-size: 3vmin;
 }
 
 .da_boys {
-  height: 300px;
+  height: 50vmin;
   width: auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border: 2px solid #00BFFF;
+  border-radius: 3em;
 }
 
 .linksbox ul {
@@ -33,55 +54,38 @@ a, p, label {
   float: none;
   text-align: center;
   list-style: none;
-}
-
-.form-group {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 1em;
 }
 
 .text-muted {
-  color: DodgerBlue;
+  color: #1E90FF;
 }
 
-a:link {
-  color: DodgerBlue;
-}
-
-a:hover {
-  color: hotpink;
-}
-
-button {
-  margin: 0 auto;
-  display: block;
+a:hover, input[type="button"]:hover, button:hover {
+  color: #FF69B4;
 }
 
 .main-content-container {
-  color: DarkSlateGrey
+  color: #2F4F4F;
+  align-self: center;
+  align-items: center;
+  align-content: center;
 }
 
-@media screen and (max-width: 1500px){
-
+@media screen and (min-width: 1300px){
   h1 {
-    font-size: 10vw;
+    font-size: 5em;
   }
-
-  a, p, label {
-    font-size: 4vw;
+  
+  p, label {
+    font-size: 1.5em;
   }
-
-  button {
-    height: 5vw;
-    width: auto;
-    font-size: 3vw;
-    left: 50%;
+  
+  .da_boys {
+    height: 20em;
   }
-
-  .form-control {
-    width: 50%;
-    height: 3vw;
-    font-size: 3vw;
+  
+  button, input[type="button"] {
+    font-size: 1em;
   }
 }

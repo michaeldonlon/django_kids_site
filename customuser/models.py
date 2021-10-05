@@ -6,7 +6,7 @@ from django.contrib import auth
 from django.contrib.auth.models import (
         AbstractBaseUser, 
         BaseUserManager, 
-        Group
+        Group,
         Permission
 )
 from django.core.exceptions import PermissionDenied

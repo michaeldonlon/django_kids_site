@@ -6,11 +6,12 @@
 
 
 {% block content %}
-<h1>Log In</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form|crispy }}
-  <br>
-  <button type="submit">Log In</button>
-</form>
+  <div class="login-form-box">
+    <h1>Log In</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <br><button type="submit">Log In</button>
+    </form>
+  </div>
 {% endblock content %}

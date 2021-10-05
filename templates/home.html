@@ -11,14 +11,13 @@
   {% if user.is_authenticated %}
     <p>Hi {{ user.first_name }}!</p>
     <p>Check out the <a href="{% url 'galleries' %}">pictures</a>.</p>
-    <p><a href="{% url 'logout' %}">Log Out</a></p>
+    <p><a href="{% url 'logout' %}"><input type=button value='Log Out'></a></p>
   {% else %}
     <p>You are not logged in</p>
     <div class="linksbox">
       <ul>
-        <li><a href="{% url 'login' %}">Log In</a></li>
-        <li></li>
-        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        <li><a href="{% url 'login' %}"><input type=button value='Log In'></a></li>
+        <li><a href="{% url 'signup' %}"><input type=button value='Sign Up'></a></li>
       </ul>
     </div>
   {% endif %}

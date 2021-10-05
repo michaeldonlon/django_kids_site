@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.getenv('DJANGO_DEBUG', default=0))
+DEBUG = int(os.getenv('DJANGO_DEBUG', default=0)) 
 
-ALLOWED_HOSTS = ['54.206.182.126', '.nishynax.xyz']
+ALLOWED_HOSTS = ['54.206.182.126', 'www.nishynax.xyz', 'nishynax.xyz']
 
 ADMINS = [('Mike', 'michael@nishynax.xyz'),]
 
@@ -91,7 +91,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django_db',
-        'USER': 'django_db_user',
+        'USER': 'postgres',
         'PASSWORD': os.environ.get('DB_PASS'),
         'HOST': '127.0.0.1',
         'PORT': 5432
@@ -131,7 +131,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-if os.environ.get('USE_S3'):
+if int(os.getenv('USE_S3', default=0)):
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
@@ -180,6 +180,7 @@ AUTH_USER_MODEL = 'customuser.MyCustomUser'
 
 # mail account at zoho
 DEFAULT_FROM_EMAIL = 'michael@nishynax.xyz'
+SERVER_EMAIL = 'michael@nishynax.xyz'
 if os.environ.get('ENVIRONMENT') == 'production':
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'smtp.zoho.com.au'
@@ -190,6 +191,7 @@ if os.environ.get('ENVIRONMENT') == 'production':
 
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 # Security for production
 if os.environ.get('ENVIRONMENT') == 'production':

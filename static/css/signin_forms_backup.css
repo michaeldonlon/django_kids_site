@@ -1,0 +1,38 @@
+/* static/css/signin_forms.css */
+
+.login-form-box {
+  margin: auto;
+  width: 300px;
+  color: #2F4F4F;
+  border: 2px solid #00BFFF;
+  padding-bottom: 20px;
+  margin-bottom: 300px;
+  box-shadow: 0 4px 8px 0 #808080, 0 6px 20px 0 #808080;
+}
+
+form {
+  margin: 2em 1em auto;
+}
+
+.form-group {
+  margin-top: 5px;
+}
+
+
+
+@media (orientation: portrait){
+
+}
+
+@media (orientation: landscape){
+  #hint_id_password1 ul li {
+    margin: 5px 25px 5px 5px;
+    text-align: left;
+  }
+
+  #hint_id_password1 ul li {
+    margin: 5px 25px 5px 5px;
+    text-align: left;
+  }
+
+}

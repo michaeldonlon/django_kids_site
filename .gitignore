@@ -9,6 +9,11 @@ __pycache__
 db.sqlite3
 media
 staticfiles
+.settings.py
+
+# Docker #
+Dockerfile
+docker-compose.yml
 
 # Backup files # 
 *.bak 
