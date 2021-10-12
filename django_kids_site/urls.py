@@ -20,8 +20,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('kidsiteadminpanel/', admin.site.urls),
-    path('accounts/', include('customuser.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('useradministration/', include('customuser.urls')),
+    path('useradministration/', include('django.contrib.auth.urls')),
     path('kidpagehomepage/', include('pages.urls')),
     path('kidpagegallery/', include('galleries.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

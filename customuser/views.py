@@ -2,7 +2,6 @@
 
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate, get_user_model
-from django.contrib.auth.views import LoginView
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage, mail_admins
@@ -12,6 +11,15 @@ from django.urls import reverse_lazy
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.views.generic import CreateView
+from django.contrib.auth.views import (
+    LoginView,
+    PasswordChangeView,
+    PasswordChangeDoneView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView
+)
 
 
 
@@ -22,19 +30,47 @@ from .token import account_activation_token
 
 class MyLoginView(LoginView):
 
-
     form_class = LoginForm
     template_name = 'registration/login.html'
 
 
-
 class UserCreateView(CreateView):
-
 
     model = get_user_model()
     form_class = CustomUserCreateForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
+
+
+class MyPasswordChangeView(PasswordChangeView):
+
+    template_name = 'registration/password-change.html'
+
+
+class MyPasswordChangeDoneView(PasswordChangeDoneView):
+
+    template_name = 'registration/password-change-done.html'
+
+
+class MyPasswordResetView(PasswordResetView):
+
+    template_name = 'registration/password-reset.html'
+    email_template_name='registration/password-reset-email.html'
+
+
+class MyPasswordResetDoneView(PasswordResetDoneView):
+
+    template_name = 'registration/password-reset-done.html'
+
+
+class MyPasswordResetConfirmView(PasswordResetConfirmView):
+
+    template_name = 'registration/password-reset-confirm.html'
+
+
+class MyPasswordResetCompleteView(PasswordResetCompleteView):
+
+    template_name = 'registration/password-reset-complete.html'
 
 
 def usersignup(request):

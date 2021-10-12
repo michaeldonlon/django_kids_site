@@ -2,7 +2,7 @@
 
 import os
 
-from PIL import Image
+from PIL import Image, ImageOps
 from io import BytesIO
 
 from django.conf import settings
@@ -46,6 +46,7 @@ class KidImage(models.Model):
     def make_thumbnail(self):
 
         image = Image.open(self.thekidimage)
+        image = ImageOps.exif_transpose(image)
         image.thumbnail(settings.THUMB_SIZE, Image.ANTIALIAS)
 
         thumb_name, thumb_extension = os.path.splitext(self.thekidimage.name)
