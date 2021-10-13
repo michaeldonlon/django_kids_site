@@ -1,3 +1,5 @@
+// static/js/gallery_select.js
+
 var currentTime = new Date();
 index_year = currentTime.getFullYear()-2000;
 actual_year = index_year;

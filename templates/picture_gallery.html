@@ -10,7 +10,9 @@
   <link rel="stylesheet" href="{% static 'css/gallerypage.css' %}">
   
   <div id="kidimage-header">
-    <h1>{{ imagegallery.galleryname }}</h1>
+    <div id="backnav">&lt;</div>
+    <div id="page-title"><h1>{{ imagegallery.galleryname }}</h1></div>
+    <div id="fwdnav">&gt;</div>
   </div>
 
   <div class="kidimage-grid">
@@ -20,9 +22,10 @@
       </div>
     {% endfor %}
   </div>
+
   {% block javascript %}
       <script src="{% static 'js/gallery_modal.js' %}"></script>
-      <script src="{% static 'js/gallery_heading.js' %}"></script>
+      <script src="{% static 'js/gallery_page.js' %}"></script>
   {% endblock javascript %}
 
   <!-- Modal image -->

@@ -1,3 +1,5 @@
+// static/js/gallery_modal.js
+
 function modalclick(image_id, thumb_src) {
   var modal = document.getElementById("myModal");
 

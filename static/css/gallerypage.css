@@ -1,22 +1,6 @@
-table, th, td {
-  border: 1px solid LightGray;
-  border-collapse: collapse;
-  padding: 10px;
-  text-align: center;
-}
-
-th {
-  background-color: DeepSkyBlue;
-  color: white;
-}
-
-td {
-  width: 33%;
-  color: DarkSlateGrey
-}
-
-tr {
-  height: 40px;
+h1 {
+  font-size: 5em;
+  margin: 0.5em 0;
 }
 
 .kidimage-grid{
@@ -32,6 +16,20 @@ tr {
   width:  350px;
   height:  auto;
   padding: 4px;
+}
+
+#kidimage-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#backnav, #fwdnav {
+  color: #00BFFF;
+  font-size: 4em;
+  font-weight: 600;
+  margin: 0.5em 5% 0.5em 5%;
+  text-shadow: 0px 4px rgb(252, 170, 255);
 }
 
 @media screen and (max-width: 1000px){
