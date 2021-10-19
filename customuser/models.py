@@ -1,6 +1,5 @@
 # customuser/models.py
 
-from django import forms
 from django.db import models
 from django.contrib import auth
 from django.contrib.auth.models import (
@@ -13,9 +12,7 @@ from django.core.exceptions import PermissionDenied
 from django.utils.translation import gettext_lazy as _
 
 
-
 class MyUserManager(BaseUserManager):
-
 
     def create_user(self, email, first_name, last_name, password=None):
         
@@ -58,6 +55,7 @@ def _user_has_perm(user, perm, obj):
             return False
     return False
 
+
 def _user_has_module_perms(user, app_label):
     for backend in auth.get_backends():
         if not hasattr(backend, 'has_module_perms'):
@@ -72,12 +70,10 @@ def _user_has_module_perms(user, app_label):
 
 class MyCustomUser(AbstractBaseUser):
 
-
     class Meta:
         permissions = [
             ('confirmed_user', 'can visit the website'),
         ]
-
 
     email = models.EmailField(
         verbose_name='email address',
@@ -138,5 +134,3 @@ class MyCustomUser(AbstractBaseUser):
     @property
     def is_superuser(self):
         return self.is_admin
-
-

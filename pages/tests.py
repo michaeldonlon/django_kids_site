@@ -7,7 +7,6 @@ from .views import HomePageView
 
 class HomepageTests(SimpleTestCase):
 
-
     def setUp(self):
         url = reverse('home')
         self.response = self.client.get(url)

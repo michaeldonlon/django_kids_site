@@ -1,8 +1,7 @@
 // static/js/gallery_page.js
 
 var currentTime = new Date();
-index_year = currentTime.getFullYear()-2000;
-actual_year = index_year;
+actual_year = currentTime.getFullYear();
 actual_month = currentTime.getMonth() + 1;
 
 var page_date = document.getElementById("page-title").innerText
@@ -26,18 +25,18 @@ var month_dictionary = [
 
 var arrow_dictionary = {'backnav':'&lt;', 'fwdnav':'&gt;'}
 
-if(page_month === "04" && page_year === 2018){
+if(page_month === 5 && page_year === 2018){
    document.getElementById("backnav").innerHTML = '<a style="cursor:default; color:#C0C0C0; text-shadow:0px 4px #DCDCDC;" href="javascript:void(0)">&lt;</a>';
-   var prev_month = page_year.toString() + '_' + ((page_month + 1).toString().padStart(2,'0'));
+   var next_month = page_year.toString() + '_' + ((page_month + 1).toString().padStart(2,'0'));
    replace_link("fwdnav", next_month)
-}else if(page_month === actual_month && index_year === actual_year){
+}else if(page_month === actual_month && page_year === actual_year){
    document.getElementById("fwdnav").innerHTML = '<a style="cursor:default; color:#C0C0C0; text-shadow:0px 4px #DCDCDC;" href="javascript:void(0)">&gt;</a>';
    var prev_month = page_year.toString() + '_' + ((page_month - 1).toString().padStart(2,'0'));
    replace_link("backnav", prev_month)
 }else if (page_month === 1){
    var prev_month = (page_year - 1).toString() + '_12'
    replace_link("backnav", prev_month)
-   var prev_month = page_year.toString() + '_' + ((page_month + 1).toString().padStart(2,'0'));
+   var next_month = page_year.toString() + '_' + ((page_month + 1).toString().padStart(2,'0'));
    replace_link("fwdnav", next_month)
 }else if (page_month === 12){
    var prev_month = page_year.toString() + '_' + ((page_month - 1).toString().padStart(2,'0'));

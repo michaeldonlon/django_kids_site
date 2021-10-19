@@ -14,9 +14,7 @@ from django.forms import (
 )
 
 
-
 class CustomUserCreateForm(ModelForm):
-
 
     password1 = CharField(
         label='Password',
@@ -62,6 +60,7 @@ class CustomUserCreateForm(ModelForm):
             user.save()
         return user
 
+
 class CustomUserChangeForm(ModelForm):
 
     password = ReadOnlyPasswordHashField()
@@ -74,6 +73,7 @@ class CustomUserChangeForm(ModelForm):
             'first_name',
             'last_name',
         )
+
 
 class LoginForm(AuthenticationForm):
     username = EmailField(

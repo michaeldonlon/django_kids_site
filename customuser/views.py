@@ -1,8 +1,7 @@
 # customuser/views.py
 
 from django.shortcuts import render
-from django.contrib.auth import login, authenticate, get_user_model
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth import login, get_user_model
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import EmailMessage, mail_admins
 from django.http import HttpResponse
@@ -22,10 +21,8 @@ from django.contrib.auth.views import (
 )
 
 
-
 from .forms import CustomUserCreateForm, LoginForm
 from .token import account_activation_token
-
 
 
 class MyLoginView(LoginView):
@@ -55,7 +52,7 @@ class MyPasswordChangeDoneView(PasswordChangeDoneView):
 class MyPasswordResetView(PasswordResetView):
 
     template_name = 'registration/password-reset.html'
-    email_template_name='registration/password-reset-email.html'
+    email_template_name = 'registration/password-reset-email.html'
 
 
 class MyPasswordResetDoneView(PasswordResetDoneView):
@@ -82,7 +79,6 @@ def usersignup(request):
             user.save()
             current_site = get_current_site(request)
             email_subject = 'Activate Your Account'
-            token = PasswordResetTokenGenerator()
             message = render_to_string('registration/activate_account.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -100,11 +96,12 @@ def usersignup(request):
 
     return render(request, 'registration/signup.html', {'form': form})
 
+
 def activate_account(request, uidb64, token):
     try:
         uid = force_bytes(urlsafe_base64_decode(uidb64))
         user = get_user_model().objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+    except(TypeError, ValueError, OverflowError, user.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True

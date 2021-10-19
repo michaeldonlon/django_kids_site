@@ -29,12 +29,12 @@ DEBUG = int(os.getenv('DJANGO_DEBUG', default=0))
 
 ALLOWED_HOSTS = ['54.206.182.126', 'www.nishynax.xyz', 'nishynax.xyz']
 
-ADMINS = [('Mike', 'michael@nishynax.xyz'),]
+ADMINS = [('Mike', 'michael@nishynax.xyz'), ]
 
 # Application definition
 
 INSTALLED_APPS = [
-    #Default apps
+    # Default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,10 +46,11 @@ INSTALLED_APPS = [
     'crispy_forms',
     'storages',
 
-    #Local apps
+    # Local apps
     'pages.apps.PagesConfig',
     'customuser.apps.CustomuserConfig',
     'galleries.apps.GalleriesConfig',
+    'recipeplanner.apps.RecipeplannerConfig',
 ]
 
 MIDDLEWARE = [

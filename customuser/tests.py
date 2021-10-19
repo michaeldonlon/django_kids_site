@@ -7,9 +7,7 @@ from django.urls import reverse, resolve
 from .views import MyLoginView, usersignup
 
 
-
 class CustomUserTests(TestCase):
-
 
     def test_create_user(self):
         myCustomUser = get_user_model()
@@ -42,9 +40,7 @@ class CustomUserTests(TestCase):
         self.assertTrue(admin_user.is_admin)
 
 
-
 class LoginPageTests(TestCase):
-
 
     def setUp(self):
         url = reverse('login')
@@ -59,7 +55,6 @@ class LoginPageTests(TestCase):
         user = get_user_model().objects.get(email='testguy@example.com')
         user.is_active = True
         user.save()
-
 
     def test_loginpage_status_code(self):
         self.assertEqual(self.response.status_code, 200)
@@ -102,9 +97,7 @@ class LoginPageTests(TestCase):
         self.assertRedirects(self.response, reverse('home'))
 
 
-
 class SignupPageTests(TestCase):
-
 
     def setUp(self):
         url = reverse('signup')
@@ -133,11 +126,11 @@ class SignupPageTests(TestCase):
         url = reverse('signup')
         self.response = self.client.post(
             url, data={
-                'email':'testguy@example.com',
-                'password1':'M5Nh32AZNxrMojNcRoAb',
-                'password2':'M5Nh32AZNxrMojNcRoAb',
-                'first_name':'testguy',
-                'last_name':'myman'
+                'email': 'testguy@example.com',
+                'password1': 'M5Nh32AZNxrMojNcRoAb',
+                'password2': 'M5Nh32AZNxrMojNcRoAb',
+                'first_name': 'testguy',
+                'last_name': 'myman'
             }
         )
         savedemail = get_user_model().objects.get(email__iexact='testguy@example.com').email
@@ -147,26 +140,25 @@ class SignupPageTests(TestCase):
         url = reverse('signup')
         self.response = self.client.post(
             url, data={
-                'email':'testguy@example.com',
-                'password1':'M5Nh32AZNxrMojNcRoAb',
-                'password2':'M5Nh32AZNxrMojNcRoAb',
-                'first_name':'testguy',
-                'last_name':'myman'
+                'email': 'testguy@example.com',
+                'password1': 'M5Nh32AZNxrMojNcRoAb',
+                'password2': 'M5Nh32AZNxrMojNcRoAb',
+                'first_name': 'testguy',
+                'last_name': 'myman'
             }
         )
         self.assertEqual(self.response.status_code, 200)
         self.assertTemplateUsed(self.response, 'registration/please_confirm.html')
 
-
     def test_signupform_sends_email(self):
         url = reverse('signup')
         self.response = self.client.post(
             url, data={
-                'email':'testguy@example.com',
-                'password1':'M5Nh32AZNxrMojNcRoAb',
-                'password2':'M5Nh32AZNxrMojNcRoAb',
-                'first_name':'testguy',
-                'last_name':'myman'
+                'email': 'testguy@example.com',
+                'password1': 'M5Nh32AZNxrMojNcRoAb',
+                'password2': 'M5Nh32AZNxrMojNcRoAb',
+                'first_name': 'testguy',
+                'last_name': 'myman'
             }
         )
         self.assertTemplateUsed(self.response, 'registration/activate_account.html')

@@ -5,7 +5,6 @@ from django.contrib import admin
 from .models import ImageGallery, KidImage
 
 
-
 class KidImageInline(admin.TabularInline):
     model = KidImage
 

@@ -5,7 +5,6 @@ from django import forms
 from .models import ImageGallery, KidImage
 
 
-
 class ImageGalleryForm(forms.ModelForm):
     class Meta:
         model = ImageGallery

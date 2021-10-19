@@ -1,6 +1,7 @@
 # galleries/management/commands/upload_kid_image.py
 
-import shutil, os
+import shutil
+import os
 import boto3
 
 from botocore.exceptions import ClientError
@@ -13,14 +14,12 @@ from PIL import Image
 from galleries.models import KidImage, ImageGallery
 
 
-
 class Command(BaseCommand):
     help = 'Upload images from the command line. Argument is the path to images'
 
     def add_arguments(self, parser):
         parser.add_argument('images_dir', type=str, help='The full path to the images being added')
         # atm its /home/centos/website_pics (or os.path.join('home','centos','website_pics'))
-
 
     def handle(self, *args, **kwargs):
         images_dir = kwargs['images_dir']
@@ -51,15 +50,14 @@ class Command(BaseCommand):
             the_month = full_date[5:7:]
 
             gallery = the_year+'_'+the_month
-            img_db_destination = os.path.join('kidimages',gallery,image)
+            img_db_destination = os.path.join('kidimages', gallery, image)
 
-            this_gallery = {'galleryname':gallery}
+            this_gallery = {'galleryname': gallery}
             g = ImageGallery(**this_gallery)
 
-
             this_image = {
-                'thekidimage':img_db_destination,
-                'gallery':g,
+                'thekidimage': img_db_destination,
+                'gallery': g,
             }
             t = KidImage(**this_image)
 
@@ -68,11 +66,11 @@ class Command(BaseCommand):
                 response = s3_client.upload_file(img_path, settings.AWS_STORAGE_BUCKET_NAME, os.path.join('media',img_db_destination))
                 t.save()
                 os.unlink(img_path)
-            except IntegrityError as e:
+            except IntegrityError:
                 self.stderr.write(f"failed to upload {image} - duplicate")
                 shutil.move(img_path, '/home/centos/failed_uploads/'+image)
                 continue
-            except ClientError as e:
+            except ClientError:
                 self.stderr.write(f"failed to upload {image} - error with s3 client")
                 shutil.move(img_path, '/home/centos/failed_uploads/'+image)
                 continue

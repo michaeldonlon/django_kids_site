@@ -11,10 +11,8 @@ from django.db import models
 from django.urls import reverse
 
 
-
 class ImageGallery(models.Model):
     
-
     galleryname = models.CharField(max_length=7, primary_key=True)
 
     def __str__(self):
@@ -26,7 +24,6 @@ class ImageGallery(models.Model):
 
 class KidImage(models.Model):
     
-
     def upload_kid_image(instance, filename):
         return 'kidimages/{0}/{1}'.format(instance.gallery.galleryname, filename)
 
