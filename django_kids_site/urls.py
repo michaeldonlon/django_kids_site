@@ -24,4 +24,5 @@ urlpatterns = [
     path('useradministration/', include('django.contrib.auth.urls')),
     path('kidpagehomepage/', include('pages.urls')),
     path('kidpagegallery/', include('galleries.urls')),
+    path('recipesapi/', include('therecipes.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

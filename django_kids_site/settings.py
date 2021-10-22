@@ -42,15 +42,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #Third party apps
+    # Third party apps
     'crispy_forms',
     'storages',
+    'rest_framework',
 
     # Local apps
     'pages.apps.PagesConfig',
     'customuser.apps.CustomuserConfig',
     'galleries.apps.GalleriesConfig',
-    'recipeplanner.apps.RecipeplannerConfig',
+    'therecipes.apps.TherecipesConfig',
 ]
 
 MIDDLEWARE = [
@@ -209,3 +210,9 @@ if os.environ.get('ENVIRONMENT') == 'production':
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 THUMB_SIZE = (350, 470)
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+# }
