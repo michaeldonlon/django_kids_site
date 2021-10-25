@@ -7,9 +7,40 @@ from django.utils.text import slugify
 
 class Ingredient(models.Model):
     """Table schema to store ingredients."""
+    ingredient_name = models.ForeignKey('IngredientName', on_delete=models.CASCADE)
+    ingredient_unit = models.ForeignKey('IngredientUnit', on_delete=models.CASCADE)
+    ingredient_qty = models.ForeignKey('IngredientQty', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '%d %s %s' % (
+            self.ingredient_qty, 
+            self.ingredient_unit, 
+            self.ingredient_name
+        )
+
+
+class IngredientName(models.Model):
+    """Table schema to store ingredient names."""
     ingredient_name = models.CharField(max_length=64)
-    ingredient_qty = models.IntegerField()
+
+    def __str__(self):
+        return '%s' % self.ingredient_name
+
+
+class IngredientUnit(models.Model):
+    """Table schema to store ingredient units."""
     ingredient_unit = models.CharField(max_length=16)
+
+    def __str__(self):
+        return '%s' % self.ingredient_unit
+
+
+class IngredientQty(models.Model):
+    """Table schema to store quantities."""
+    ingredient_qty = models.IntegerField()
+
+    def __str__(self):
+        return '%d' % self.ingredient_qty
 
 
 class Recipe(models.Model):
@@ -17,8 +48,10 @@ class Recipe(models.Model):
     cookbook = models.ForeignKey('Cookbook', on_delete=models.CASCADE)
     recipe_title = models.CharField(max_length=64)
     category = models.ManyToManyField('Category', blank=True)
-    ingredients = models.TextField()
+    ingredients = models.ManyToManyField('Ingredient', blank=True)
     method = models.TextField()
+    serves = models.IntegerField()
+    prep_time = models.IntegerField()
     slug = models.SlugField(null=True, blank=True, unique=True)
     prepopulated_fields = {"slug": ("recipe_title",)}
 

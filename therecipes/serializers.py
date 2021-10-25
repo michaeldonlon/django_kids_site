@@ -1,7 +1,22 @@
 # therecipes/api/serializers.py
 
 from rest_framework import serializers
-from .models import Recipe
+from .models import Ingredient, Recipe
+
+
+class IngredientSerializer(serializers.ModelSerializer):
+    
+    ingredient_qty = serializers.StringRelatedField(many=False)
+    ingredient_unit = serializers.StringRelatedField(many=False)
+    ingredient_name = serializers.StringRelatedField(many=False)
+
+    class Meta:
+        model = Ingredient
+        fields = [
+            'ingredient_qty',
+            'ingredient_unit',
+            'ingredient_name'
+        ]
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -18,6 +33,8 @@ class RecipeSerializer(serializers.ModelSerializer):
         slug_field='category_name'
      )
 
+    ingredients = IngredientSerializer(many=True, read_only=True)
+
     class Meta:
         model = Recipe
         fields = [
@@ -28,6 +45,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             "method", 
             "slug"
         ]
+        depth = 1
 
 
 class ShortRecipeSerializer(serializers.ModelSerializer):
